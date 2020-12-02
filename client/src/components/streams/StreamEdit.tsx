@@ -1,8 +1,11 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchStream } from '../../actions/actions';
+import { fetchStream, editStream } from '../../actions/actions';
+import { loader } from './loader';
+import StreamForm from './StreamForm';
 
-interface props {
+interface Props {
   match: {
     params: {
       id: number;
@@ -11,19 +14,20 @@ interface props {
   stream: number;
 }
 
-interface stream {
+interface Stream {
   title: string;
   description: string;
   userId: string;
   id: number;
 }
 
-interface state {
-  streams: Array<stream>;
+interface State {
+  streams: Array<Stream>;
 }
 
-interface componentProps {
+interface ComponentProps {
   fetchStream: Function;
+  editStream: Function;
   history?: object;
   location?: object;
   match: {
@@ -37,32 +41,33 @@ interface componentProps {
   };
 }
 
-class StreamEdit extends Component<componentProps> {
+class StreamEdit extends Component<ComponentProps> {
   componentDidMount() {
     this.props.fetchStream(this.props.match.params.id);
   }
 
-  loader() {
-    return (
-      <div className='ui active inverted dimmer'>
-        <div className='ui big text loader'>Loading...</div>
-        <p></p>
-      </div>
-    );
-  }
-
+  onSubmit = (formValues: object) => {
+    console.log(formValues);
+    this.props.editStream(this.props.match.params.id, formValues);
+  };
   render() {
-    if (!this.props.stream) return this.loader();
+    if (!this.props.stream) return loader();
     return (
       <div>
-        <div>{this.props.stream.title}</div>
+        <h3>Edit your Stream</h3>
+        <StreamForm
+          initialValues={_.pick(this.props.stream, 'title', 'description')}
+          onSubmit={this.onSubmit}
+        />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state: state, ownProps: props) => ({
+const mapStateToProps = (state: State, ownProps: Props) => ({
   stream: state.streams[ownProps.match.params.id]
 });
 
-export default connect(mapStateToProps, { fetchStream })(StreamEdit);
+export default connect(mapStateToProps, { fetchStream, editStream })(
+  StreamEdit
+);
