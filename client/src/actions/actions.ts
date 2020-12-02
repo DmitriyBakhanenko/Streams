@@ -8,7 +8,6 @@ import {
   EDIT_STREAM
 } from './types';
 import streams from '../apis/streams';
-import SteamList from '../components/streams/StreamList';
 
 export const signIn = (id: string, currentUser: string) => {
   return {
@@ -24,9 +23,14 @@ export const signOut = () => {
 };
 
 export const createStream = (formValues: object) => async (
-  dispatch: CallableFunction
+  dispatch: CallableFunction,
+  getState: any
 ) => {
-  const response = await streams.post('/streams', formValues);
+  const { id } = getState().auth;
+  const response = await streams.post('/streams', {
+    ...formValues,
+    userId: id
+  });
 
   dispatch({
     type: CREATE_STREAM,

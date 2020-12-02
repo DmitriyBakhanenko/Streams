@@ -25,7 +25,7 @@ export const authReducer = (state = INITIAL_STATE, action: action) => {
       };
 
     case GOOGLE_SIGN_OUT:
-      return { ...state, isSignedIn: false, id: '' };
+      return { ...state, isSignedIn: false, id: '', currentUser: '' };
 
     default:
       return state;
