@@ -54,7 +54,7 @@ const SteamList = ({
     if (isSignedIn) {
       return (
         <div style={{ textAlign: 'right' }}>
-          <Link to='/streams/new' className='ui button primary'>
+          <Link to='/streams/new' className='ui button green'>
             Create Stream
           </Link>
         </div>

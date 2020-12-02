@@ -23,10 +23,6 @@ class GoogleAuth extends Component {
     });
   }
 
-  componentWillUnmount() {
-    this.auth.isSignedIn.disconect();
-  }
-
   onAuthChange = isSignedIn => {
     if (isSignedIn) {
       this.props.signIn(

@@ -10,6 +10,16 @@ import StreamShow from './streams/StreamShow';
 import history from '../history';
 
 export default function App() {
+  // if (
+  //   history.location.pathname !==
+  //   ('/' ||
+  //     '/streams/new' ||
+  //     '/streams/edit/:id' ||
+  //     '/streams/delete' ||
+  //     '/streams/show')
+  // ) {
+  //   history.push('/');
+  // }
   return (
     <div className='ui container'>
       <Router history={history}>
