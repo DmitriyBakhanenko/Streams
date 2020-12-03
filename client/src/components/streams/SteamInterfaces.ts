@@ -1,10 +1,15 @@
 export interface Props {
+  fetchStream: Function;
+  editStream: Function;
+  deleteStream: Function;
+  history?: object;
+  location?: object;
   match: {
     params: {
       id: number;
     };
   };
-  stream: number;
+  stream: Stream;
 }
 
 export interface Stream {
@@ -16,21 +21,5 @@ export interface Stream {
 
 export interface State {
   streams: Array<Stream>;
-}
-
-export interface ComponentProps {
-  fetchStream: Function;
-  editStream: Function;
-  deleteStream: Function;
-  history?: object;
-  location?: object;
-  match: {
-    params: {
-      id: number;
-    };
-  };
-  stream: {
-    id: number;
-    title: string;
-  };
+  auth: { id: string; isSignedIn: boolean };
 }

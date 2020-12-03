@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { fetchStreams } from '../../actions/actions';
+import { State, Stream } from './SteamInterfaces';
 
 const SteamList = ({
   fetchStreams,
@@ -16,11 +17,7 @@ const SteamList = ({
     ref.current();
   }, []);
 
-  interface stream {
-    userId: string;
-  }
-
-  const renderAdmin = (stream: stream) => {
+  const renderAdmin = (stream: Stream) => {
     if (stream.userId === currentUserId) {
       return (
         <div className='right floated content'>
@@ -38,13 +35,7 @@ const SteamList = ({
     }
   };
 
-  interface stream {
-    title: string;
-    description: string;
-    id: string;
-  }
-
-  const renderList = streams.map((stream: stream) => (
+  const renderList = streams.map((stream: Stream) => (
     <div className='item' key={stream.id}>
       {renderAdmin(stream)}
       <i className='big middle aligned icon camera' />
@@ -78,12 +69,7 @@ const SteamList = ({
   );
 };
 
-interface state {
-  streams: object;
-  auth: { id: string; isSignedIn: boolean };
-}
-
-const mapStateToProps = (state: state) => ({
+const mapStateToProps = (state: State) => ({
   streams: Object.values(state.streams),
   currentUserId: state.auth.id,
   isSignedIn: state.auth.isSignedIn

@@ -3,9 +3,9 @@ import Modal from '../modal';
 import history from '../../history';
 import { connect } from 'react-redux';
 import { fetchStream, deleteStream } from '../../actions/actions';
-import { Props, State, ComponentProps } from './SteamInterfaces';
+import { Props, State } from './SteamInterfaces';
 
-class StreamDelete extends React.Component<ComponentProps> {
+class StreamDelete extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchStream(this.props.match.params.id);
   }

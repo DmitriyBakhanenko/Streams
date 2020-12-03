@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { fetchStream, editStream } from '../../actions/actions';
 import { loader } from './loader';
 import StreamForm from './StreamForm';
-import { Props, State, ComponentProps } from './SteamInterfaces';
+import { Props, State } from './SteamInterfaces';
 
-class StreamEdit extends Component<ComponentProps> {
+class StreamEdit extends Component<Props> {
   componentDidMount() {
     this.props.fetchStream(this.props.match.params.id);
   }
