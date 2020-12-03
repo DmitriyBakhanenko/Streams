@@ -27,7 +27,12 @@ const SteamList = ({
           <Link to={`/streams/edit/${stream.id}`} className='ui button primary'>
             Edit
           </Link>
-          <button className='ui button negative'>Delete</button>
+          <Link
+            to={`/streams/delete/${stream.id}`}
+            className='ui button negative'
+          >
+            Delete
+          </Link>
         </div>
       );
     }
@@ -44,7 +49,9 @@ const SteamList = ({
       {renderAdmin(stream)}
       <i className='big middle aligned icon camera' />
       <div className='content'>
-        <div className='header'>{stream.title}</div>
+        <div className='header'>
+          <Link to={`/streams/${stream.id}`}>{stream.title}</Link>
+        </div>
         <div className='description'>{stream.description}</div>
       </div>
     </div>

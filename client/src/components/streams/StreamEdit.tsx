@@ -4,42 +4,7 @@ import { connect } from 'react-redux';
 import { fetchStream, editStream } from '../../actions/actions';
 import { loader } from './loader';
 import StreamForm from './StreamForm';
-
-interface Props {
-  match: {
-    params: {
-      id: number;
-    };
-  };
-  stream: number;
-}
-
-interface Stream {
-  title: string;
-  description: string;
-  userId: string;
-  id: number;
-}
-
-interface State {
-  streams: Array<Stream>;
-}
-
-interface ComponentProps {
-  fetchStream: Function;
-  editStream: Function;
-  history?: object;
-  location?: object;
-  match: {
-    params: {
-      id: number;
-    };
-  };
-  stream: {
-    id: number;
-    title: string;
-  };
-}
+import { Props, State, ComponentProps } from './SteamInterfaces';
 
 class StreamEdit extends Component<ComponentProps> {
   componentDidMount() {
